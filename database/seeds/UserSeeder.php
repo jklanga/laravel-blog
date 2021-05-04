@@ -15,13 +15,25 @@ class UserSeeder extends Seeder
     {
         $currentDate = date('Y-m-d H:i:s');
 
-        DB::table('users')->insert([
-            'name' => 'Kuthula',
-            'email' => 'jklangadev@gmail.com',
-            'password' => Hash::make('password'),
-            'email_verified_at' => $currentDate,
-            'created_at' => $currentDate,
-            'updated_at' => $currentDate,
-        ]);
+        DB::table('users')->insert(
+            [
+                [
+                    'name' => 'Kuthula',
+                    'email' => 'jklangadev@gmail.com',
+                    'password' => Hash::make('password'),
+                    'email_verified_at' => $currentDate,
+                    'created_at' => $currentDate,
+                    'updated_at' => $currentDate,
+                ],
+                [
+                    'name' => 'Langa',
+                    'email' => 'jklanga@gmail.com',
+                    'password' => Hash::make('password'),
+                    'email_verified_at' => $currentDate,
+                    'created_at' => $currentDate,
+                    'updated_at' => $currentDate,
+                ],
+            ]
+        );
     }
 }
