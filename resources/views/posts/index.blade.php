@@ -8,10 +8,10 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 @foreach($posts as $post)
-                <div class="card">
+                <div class="card p-3 mb-1">
                     <div class="card-body">
                         <div class="article">
-                            <a href="{{ url('posts/' . $post->id) }}" class="article-heading">{{ $post->title }}, {{ $post->created_at }}</a>
+                            <a href="{{ url('posts/' . $post->id) }}" class="article-heading">{{ $post->title }}, {{ date('F j, Y', strtotime($post->created_at)) }}</a>
                             {!! $post->content !!}
                         </div>
                     </div>

@@ -31,7 +31,7 @@
                                     </p>
                                     <hr />
                                     <!-- Date and time-->
-                                    <p>Posted on <!--January 1, 2021 at 12:00 PM-->{{ $post->created_at }}</p>
+                                    <p>Posted on {{ date('F j, Y', strtotime($post->created_at)) . ' at ' . date('g:i A', strtotime($post->created_at))}}</p>
                                     <hr />
                                     <!-- Preview image-->
                                     <img class="img-fluid rounded" src="https://via.placeholder.com/900x300" alt="..." />
@@ -60,7 +60,7 @@
                                         <div class="media-body">
                                             @php($author = $comment->user->id == $post->user->id ? ' <small class="btn btn-sm btn-secondary">Author</small>' : '')
 
-                                            <h5 class="mt-0">{{ $comment->user->name }} {!! $author !!}</h5>
+                                            <h5 class="mt-0">{{ $comment->user->name }} {!! $author !!} <small><i>{{ $comment->created_at->diffForHumans() }}</i></small></h5>
                                             {{ $comment->comment }}
                                         </div>
                                     </div>
