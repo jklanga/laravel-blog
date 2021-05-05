@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index', ['posts' => Post::all()]);
+        return view('posts.index', ['posts' => Post::all()->sortByDesc('id')]);
     }
 
     /**
@@ -60,7 +60,7 @@ class PostController extends Controller
 
             Session::flash('success', 'Successfully created post!');
 
-            return redirect()->back();
+            return redirect('posts');
         }
     }
 
