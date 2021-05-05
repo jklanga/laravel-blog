@@ -7,6 +7,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="container">
+                            @can('isAdmin')
+                                    <a href="{{ url("posts/{$post->id}/edit") }}">edit</a>
+                                    | <a href="{{ url("posts/{$post->id}/edit") }}"
+                                         onclick="if (!confirm('Delete Post?')) { return false;} event.preventDefault();
+                              $('.delete-form').submit();">delete
+                                    </a>
+                                    <!-- delete form -->
+                                    <form class="delete-form" action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                    </form>
+                            @endcan
                             <div class="row">
                                 <!-- Post content-->
                                 <div class="col-lg-12">

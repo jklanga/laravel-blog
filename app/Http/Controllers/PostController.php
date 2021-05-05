@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -39,6 +39,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('isAdmin')) {
+            return redirect('posts')->with('warning', 'You are not authorized to access this route.');
+        }
+
         $rules = [
             'title' => 'required',
             'content' => 'required',
@@ -91,6 +95,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        if (Gate::denies('isAdmin')) {
+            return redirect('posts')->with('warning', 'You are not authorized to access this route.');
+        }
+
         $rules = [
             'title' => 'required',
             'content' => 'required',
@@ -119,6 +127,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (Gate::denies('isAdmin')) {
+            return redirect('posts')->with('warning', 'You are not authorized to access this route.');
+        }
+
         $post->delete();
 
         Session::flash('success', 'Successfully deleted the post!');

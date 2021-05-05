@@ -16,7 +16,7 @@ class PostSeeder extends Seeder
 
         DB::table('posts')->insert([
             'title' => 'Post Title',
-            'content' => 'This is the post content',
+            'content' => '<p>This is the post content</p>',
             'user_id' => 1,
             'created_at' => $currentDate,
             'updated_at' => $currentDate,

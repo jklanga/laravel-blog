@@ -52,9 +52,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('posts.index') }}">List Posts</a>
                             </li>
+                            @can('isAdmin')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('posts.create') }}">New Post</a>
                             </li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

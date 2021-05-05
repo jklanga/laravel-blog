@@ -16,17 +16,19 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ url("posts/{$post->id}/edit") }}">edit</a>
-                        | <a href="{{ url("posts/{$post->id}/edit") }}"
-                           onclick="if (!confirm('Delete Post?')) { return false;} event.preventDefault();
-                          $('.delete-form').submit();">delete
-                        </a>
                         <a href="{{ url('posts/' . $post->id) }}" class="float-right">Read more</a>
-                        <!-- delete form -->
-                        <form class="delete-form" action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                        </form>
+                        @can('isAdmin')
+                            <a href="{{ url("posts/{$post->id}/edit") }}">edit</a>
+                            | <a href="{{ url("posts/{$post->id}/edit") }}"
+                               onclick="if (!confirm('Delete Post?')) { return false;} event.preventDefault();
+                              $('.delete-form').submit();">delete
+                            </a>
+                            <!-- delete form -->
+                            <form class="delete-form" action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                            </form>
+                        @endcan
                     </div>
                 </div>
                 @endforeach
