@@ -131,6 +131,10 @@ class PostController extends Controller
             return redirect('posts')->with('warning', 'You are not authorized to access this route.');
         }
 
+        if ($post->comments()) {
+            $post->comments()->delete();
+        }
+
         $post->delete();
 
         Session::flash('success', 'Successfully deleted the post!');
