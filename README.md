@@ -1,4 +1,4 @@
-## Laravel
+## Laravel Blog
 This is a simple blog application written in Laravel 7. It allows users to register and login.
 ### User roles:
 - Admin: Can create, list, edit, show and delete the post, as well as adding a comment.
