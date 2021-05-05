@@ -18,5 +18,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::resources([
+        'posts' => 'PostController',
+        'comments' => 'CommentController',
+    ]);
+});
